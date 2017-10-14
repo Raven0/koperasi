@@ -63,6 +63,27 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="#">Angsuran</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Detail Angsuran</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Pinjaman</a>
+                                    </li>
+                                    <li>
+                                        <a href="kategori">Kategori Pinjaman</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Simpanan</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Anggota</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Petugas Koperasi</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif
@@ -74,7 +95,7 @@
         @yield('content')
         <div class="container">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-8 col-md-offset-2">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             @yield('panelhead')
