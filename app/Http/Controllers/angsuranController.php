@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Angsuran;
+use App\Kategori;
 
 class angsuranController extends Controller
 {
@@ -16,10 +18,12 @@ class angsuranController extends Controller
      {
          $this->middleware('auth');
      }
-     
+
     public function index()
     {
         //
+        $vars = Angsuran::all();
+        return view('angsuran.index',['var' => $vars]);
     }
 
     /**
@@ -30,6 +34,8 @@ class angsuranController extends Controller
     public function create()
     {
         //
+        $K = Kategori::all();
+        return view('angsuran.create')->with('kategori' ,$K);
     }
 
     /**
@@ -41,6 +47,19 @@ class angsuranController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+           'idkategori' => 'required', 'idanggota' => 'required', 'tglbayar' => 'required', 'angsuranke' => 'required', 'besarangsuran' => 'required', 'ket' => 'required'
+        ]);
+
+        $var = new Angsuran;
+        $var->id_kategori = $request->idkategori;
+        $var->id_anggota = $request->idanggota;
+        $var->tgl_pembayaran = $request->tglbayar;
+        $var->angsuran_ke = $request->angsuranke;
+        $var->besar_angsuran = $request->besarangsuran;
+        $var->ket = $request->ket;
+        $var->save();
+        return redirect('angsuran');
     }
 
     /**
@@ -63,6 +82,12 @@ class angsuranController extends Controller
     public function edit($id)
     {
         //
+        $var = Angsuran::find($id);
+        if(!$var){
+            abort(404);
+        }
+
+        return view('angsuran.edit')->with('var', $var);
     }
 
     /**
@@ -75,6 +100,19 @@ class angsuranController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'idkategori' => 'required', 'idanggota' => 'required', 'tglbayar' => 'required', 'angsuranke' => 'required', 'besarangsuran' => 'required', 'ket' => 'required'
+        ]);
+
+        $var = Angsuran::find($id);
+        $var->id_kategori = $request->idkategori;
+        $var->id_anggota = $request->idanggota;
+        $var->tgl_pembayaran = $request->tglbayar;
+        $var->angsuran_ke = $request->angsuranke;
+        $var->besar_angsuran = $request->besarangsuran;
+        $var->ket = $request->ket;
+        $var->save();
+        return redirect('angsuran');
     }
 
     /**
@@ -86,5 +124,8 @@ class angsuranController extends Controller
     public function destroy($id)
     {
         //
+        $var = Angsuran::find($id);
+        $var ->delete();
+        return redirect('angsuran');
     }
 }
