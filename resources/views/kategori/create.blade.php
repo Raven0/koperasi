@@ -22,7 +22,7 @@ Create Kategori
 @endif
 <form action="/kategori" method="post">
     <div class="form-group">
-        <label> Nama Kategori </label>
+        <label> Nama Pinjaman </label>
         <input type="text" name="name" value="" class="form-control">
     </div>
     <input type="submit" value="Create" class="btn btn-success">

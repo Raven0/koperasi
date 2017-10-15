@@ -20,9 +20,9 @@ Edit Kategori
         @endforeach
     </ul>
 @endif
-<form action="/kategori/{{$var->id}}" method="post">
+<form action="/kategori/{{$var->id_kategori}}" method="post">
     <div class="form-group">
-        <label> Nama Kategori </label>
+        <label>Nama Pinjaman</label>
         <input type="text" name="name" value="{{$var->nama_pinjaman}}" class="form-control">
     </div>
     <input type="submit" value="edit" class="btn btn-success">
