@@ -27,6 +27,7 @@ class kategoriController extends Controller
     public function create()
     {
         //
+        return view('kategori.create');
     }
 
     /**
@@ -38,6 +39,14 @@ class kategoriController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+           'name' => 'required'
+        ]);
+
+        $var = new Kategori;
+        $var->nama_pinjaman = $request->name;
+        $var->save();
+        return redirect('kategori');
     }
 
     /**
@@ -60,6 +69,12 @@ class kategoriController extends Controller
     public function edit($id)
     {
         //
+        $var = Kategori::find($id);
+        if(!$var){
+            abort(404);
+        }
+
+        return view('kategori.edit')->with('var', $var);
     }
 
     /**
@@ -72,6 +87,14 @@ class kategoriController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+           'name' => 'required'
+        ]);
+
+        $var = Kategori::find($id);
+        $var ->nama_pinjaman = $request->name;
+        $var ->save();
+        return redirect('kategori');
     }
 
     /**
@@ -83,7 +106,7 @@ class kategoriController extends Controller
     public function destroy($id)
     {
         //
-        $var = daftar::find($id);
+        $var = Kategori::find($id);
         $var ->delete();
         return redirect('kategori');
     }
