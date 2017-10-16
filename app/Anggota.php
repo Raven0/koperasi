@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Anggota extends Model
+class anggota extends Model
 {
     //
-    protected $table = "anggota";
-    protected $primaryKey = "id_anggota";
+    protected $table = 'anggota';
     public $timestamps = false;
+    protected $primaryKey = 'id_anggota';
 }

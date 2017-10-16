@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\simpanan;
 
 class simpananController extends Controller
 {
@@ -15,6 +15,8 @@ class simpananController extends Controller
     public function index()
     {
         //
+        $vars = simpanan::all();
+         return view('simpanan.index',['var' => $vars]);
     }
 
     /**
@@ -25,6 +27,7 @@ class simpananController extends Controller
     public function create()
     {
         //
+        return view('simpanan.create');
     }
 
     /**
@@ -36,6 +39,15 @@ class simpananController extends Controller
     public function store(Request $request)
     {
         //
+        $var = new simpanan;
+        $var->id_simpanan = $request->id_simpanan;
+        $var->nm_simpanan = $request->nm_simpanan;
+        $var->id_anggota = $request->id_anggota;
+        $var->tgl_simpanan = $request->tgl_simpanan;
+        $var->besar_simpanan = $request->besar_simpanan;
+        $var->ket = $request->ket;
+        $var->save();
+        return redirect('simpanan');
     }
 
     /**
@@ -58,6 +70,12 @@ class simpananController extends Controller
     public function edit($id)
     {
         //
+        $var = simpanan::find($id);
+        if(!$var){
+            abort(404);
+        }
+        
+        return view('simpanan.edit')->with('var', $var);
     }
 
     /**
@@ -70,6 +88,15 @@ class simpananController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $var = simpanan::find($id);
+        $var->id_simpanan = $request->id_simpanan;
+        $var->nm_simpanan = $request->nm_simpanan;
+        $var->id_anggota = $request->id_anggota;
+        $var->tgl_simpanan = $request->tgl_simpanan;
+        $var->besar_simpanan = $request->besar_simpanan;
+        $var->ket = $request->ket;
+        $var ->save();
+        return redirect('simpanan');
     }
 
     /**
@@ -81,5 +108,8 @@ class simpananController extends Controller
     public function destroy($id)
     {
         //
+        $var = simpanan::find($id);
+        $var ->delete();
+        return redirect('simpanan');
     }
 }
