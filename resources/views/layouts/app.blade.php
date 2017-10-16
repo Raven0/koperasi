@@ -122,6 +122,7 @@
                                     @yield('tbody')
                                 </tbody>
                             </table>
+                            @yield('paginate')
                         </div>
                     </div>
                 </div>

@@ -18,11 +18,12 @@ class kategoriController extends Controller
          $this->middleware('auth');
      }
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $vars = Kategori::all();
-        return view('kategori.index',['var' => $vars]);
+        $query = $request->get('search');
+        $var = Kategori::where('id_kategori', 'LIKE', '%' . $query . '%')->orWhere('nama_pinjaman', 'LIKE', '%' . $query . '%')->paginate(2);
+        return view('kategori.index', compact('var', 'query'));
     }
 
     /**

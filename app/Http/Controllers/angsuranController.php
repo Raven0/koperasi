@@ -20,11 +20,12 @@ class angsuranController extends Controller
          $this->middleware('auth');
      }
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $vars = Angsuran::all();
-        return view('angsuran.index',['var' => $vars]);
+        $query = $request->get('search');
+        $var = Angsuran::where('id_angsuran', 'LIKE', '%' . $query . '%')->orWhere('ket', 'LIKE', '%' . $query . '%')->paginate(2);
+        return view('angsuran.index', compact('var', 'query'));
     }
 
     /**
@@ -36,7 +37,8 @@ class angsuranController extends Controller
     {
         //
         $K = Kategori::all();
-        return view('angsuran.create')->with('kategori' ,$K);
+        $A = Anggota::all();
+        return view('angsuran.create')->with('kategori' ,$K)->with('anggota' ,$A);
     }
 
     /**
