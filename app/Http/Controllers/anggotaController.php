@@ -3,26 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kategori;
+use App\Http\Controllers\Controller;
 
-class kategoriController extends Controller
+class anggotaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
-
     public function index()
     {
         //
-        $vars = Kategori::all();
-        return view('kategori.index',['var' => $vars]);
     }
 
     /**
@@ -33,7 +25,6 @@ class kategoriController extends Controller
     public function create()
     {
         //
-        return view('kategori.create');
     }
 
     /**
@@ -45,14 +36,6 @@ class kategoriController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, [
-           'name' => 'required'
-        ]);
-
-        $var = new Kategori;
-        $var->nama_pinjaman = $request->name;
-        $var->save();
-        return redirect('kategori');
     }
 
     /**
@@ -75,12 +58,6 @@ class kategoriController extends Controller
     public function edit($id)
     {
         //
-        $var = Kategori::find($id);
-        if(!$var){
-            abort(404);
-        }
-
-        return view('kategori.edit')->with('var', $var);
     }
 
     /**
@@ -93,14 +70,6 @@ class kategoriController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request, [
-           'name' => 'required'
-        ]);
-
-        $var = Kategori::find($id);
-        $var ->nama_pinjaman = $request->name;
-        $var ->save();
-        return redirect('kategori');
     }
 
     /**
@@ -112,8 +81,5 @@ class kategoriController extends Controller
     public function destroy($id)
     {
         //
-        $var = Kategori::find($id);
-        $var ->delete();
-        return redirect('kategori');
     }
 }

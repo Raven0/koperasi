@@ -63,6 +63,27 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <li>
+                                        <a href="angsuran">Angsuran</a>
+                                    </li>
+                                    <li>
+                                        <a href="detail_angsuran">Detail Angsuran</a>
+                                    </li>
+                                    <li>
+                                        <a href="pinjaman">Pinjaman</a>
+                                    </li>
+                                    <li>
+                                        <a href="kategori">Kategori Pinjaman</a>
+                                    </li>
+                                    <li>
+                                        <a href="simpanan">Simpanan</a>
+                                    </li>
+                                    <li>
+                                        <a href="anggota">Anggota</a>
+                                    </li>
+                                    <li>
+                                        <a href="petugas">Petugas Koperasi</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif

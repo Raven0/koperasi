@@ -21,3 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('kategori','kategoriController');
 Route::get('/kategori/delete/{id}','kategoriController@destroy');
+
+Route::resource('angsuran','angsuranController');
+Route::get('/angsuran/delete/{id}','angsuranController@destroy');
+
+Route::resource('detail_angsuran','detailAngsuranController');
+Route::get('/detail_angsuran/delete/{id}','detailAngsuranController@destroy');
