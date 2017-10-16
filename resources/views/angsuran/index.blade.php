@@ -36,23 +36,27 @@ Angsuran
 @endsection
 
 @section('tbody')
-@foreach($var as $var)
+@foreach($var as $vars)
     <tr>
-        <td>{{ $var->id_angsuran}}</td>
-        <td>{{ $var->id_kategori}}</td>
-        <td>{{ $var->id_anggota}}</td>
-        <td>{{ $var->tgl_pembayaran}}</td>
-        <td>{{ $var->angsuran_ke}}</td>
-        <td>{{ $var->besar_angsuran}}</td>
-        <td>{{ $var->ket}}</td>
+        <td>{{ $vars->id_angsuran}}</td>
+        <td>{{ $vars->id_kategori}}</td>
+        <td>{{ $vars->id_anggota}}</td>
+        <td>{{ $vars->tgl_pembayaran}}</td>
+        <td>{{ $vars->angsuran_ke}}</td>
+        <td>{{ $vars->besar_angsuran}}</td>
+        <td>{{ $vars->ket}}</td>
         <td>
-            <a href="/angsuran/{{$var->id_angsuran}}/edit" class="btn btn-warning">
+            <a href="/angsuran/{{$vars->id_angsuran}}/edit" class="btn btn-warning">
                 Edit
             </a>
-            <a href="{{url('angsuran/delete',$var->id_angsuran)}}" class="btn btn-danger">
+            <a href="{{url('angsuran/delete',$vars->id_angsuran)}}" class="btn btn-danger">
                 Delete
             </a>
         </td>
     </tr>
 @endforeach
+@endsection
+
+@section('paginate')
+{{ $var->links() }}
 @endsection

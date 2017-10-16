@@ -19,11 +19,12 @@ class detailAngsuranController extends Controller
          $this->middleware('auth');
      }
 
-    public function index()
+    public function index(Request $request)
     {
         //
-        $vars = Detail_Angsuran::all();
-        return view('detail_angsuran.index',['var' => $vars]);
+        $query = $request->get('search');
+        $var = Detail_Angsuran::where('id_angsuran', 'LIKE', '%' . $query . '%')->orWhere('ket', 'LIKE', '%' . $query . '%')->paginate(2);
+        return view('detail_angsuran.index', compact('var', 'query'));
     }
 
     /**

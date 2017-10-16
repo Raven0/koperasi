@@ -33,20 +33,24 @@ Detail Angsuran
 @endsection
 
 @section('tbody')
-@foreach($var as $var)
+@foreach($var as $vars)
     <tr>
-        <td>{{ $var->id_angsuran}}</td>
-        <td>{{ $var->tgl_jatuh_tempo}}</td>
-        <td>{{ $var->besar_angsuran}}</td>
-        <td>{{ $var->ket}}</td>
+        <td>{{ $vars->id_angsuran}}</td>
+        <td>{{ $vars->tgl_jatuh_tempo}}</td>
+        <td>{{ $vars->besar_angsuran}}</td>
+        <td>{{ $vars->ket}}</td>
         <td>
-            <a href="/detail_angsuran/{{$var->id}}/edit" class="btn btn-warning">
+            <a href="/detail_angsuran/{{$vars->id}}/edit" class="btn btn-warning">
                 Edit
             </a>
-            <a href="{{url('detail_angsuran/delete',$var->id)}}" class="btn btn-danger">
+            <a href="{{url('detail_angsuran/delete',$vars->id)}}" class="btn btn-danger">
                 Delete
             </a>
         </td>
     </tr>
 @endforeach
+@endsection
+
+@section('paginate')
+{{ $var->links() }}
 @endsection
