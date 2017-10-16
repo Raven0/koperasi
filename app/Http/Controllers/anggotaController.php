@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\anggota;
+use App\Anggota;
 
 
 class anggotaController extends Controller
@@ -16,7 +16,7 @@ class anggotaController extends Controller
     public function index()
     {
         //
-        $vars = anggota::all();
+        $vars = Anggota::all();
          return view('anggota.index',['var' => $vars]);
     }
 
@@ -40,7 +40,7 @@ class anggotaController extends Controller
     public function store(Request $request)
     {
         //
-        $var = new anggota;
+        $var = new Anggota;
         $var->id_anggota = $request->id_anggota;
         $var->nama = $request->nama;
         $var->alamat = $request->alamat;
@@ -74,11 +74,11 @@ class anggotaController extends Controller
     public function edit($id)
     {
         //
-        $var = anggota::find($id);
+        $var = Anggota::find($id);
         if(!$var){
             abort(404);
         }
-        
+
         return view('anggota.edit')->with('var', $var);
     }
 
@@ -92,7 +92,7 @@ class anggotaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $var = anggota::find($id);
+        $var = Anggota::find($id);
         $var->id_anggota = $request->id_anggota;
         $var->nama = $request->nama;
         $var->alamat = $request->alamat;
@@ -115,7 +115,7 @@ class anggotaController extends Controller
     public function destroy($id)
     {
         //
-        $var = anggota::find($id);
+        $var = Anggota::find($id);
         $var ->delete();
         return redirect('anggota');
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\pinjaman;
+use App\Pinjaman;
 
 class pinjamanController extends Controller
 {
@@ -15,7 +15,7 @@ class pinjamanController extends Controller
     public function index()
     {
         //
-        $vars = pinjaman::all();
+        $vars = Pinjaman::all();
          return view('pinjaman.index',['var' => $vars]);
     }
 
@@ -39,7 +39,7 @@ class pinjamanController extends Controller
     public function store(Request $request)
     {
         //
-        $var = new pinjaman;
+        $var = new Pinjaman;
         $var->id_pinjaman = $request->id_pinjaman;
         $var->nama_pinjaman = $request->nama_pinjaman;
         $var->id_anggota = $request->id_anggota;
@@ -75,7 +75,7 @@ class pinjamanController extends Controller
     {
         //
 
-        $var = pinjaman::find($id);
+        $var = Pinjaman::find($id);
         if(!$var){
             abort(404);
         }
@@ -92,7 +92,7 @@ class pinjamanController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $var = pinjaman::find($id);
+        $var = Pinjaman::find($id);
         $var->id_pinjaman = $request->id_pinjaman;
         $var->nama_pinjaman = $request->nama_pinjaman;
         $var->id_anggota = $request->id_anggota;
@@ -118,7 +118,7 @@ class pinjamanController extends Controller
     public function destroy($id)
     {
         //
-        $var = pinjaman::find($id);
+        $var = Pinjaman::find($id);
         $var ->delete();
         return redirect('pinjaman');
     }
