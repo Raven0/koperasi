@@ -13,6 +13,12 @@ Dashboard
     </div>
 @endif
 
-You are logged in!
+You are logged in! Hello <b>{{Auth::user()->name}}</b><br>
+
+@if(Auth::user()->role == 'ADMIN')
+Welcome ADMIN!
+@else
+Welcome USER!
+@endif
 @endsection
 @endsection

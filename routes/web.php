@@ -32,5 +32,10 @@ Route::resource('petugas', 'petugasController');
 Route::get('/petugas/delete/{id}','petugasController@destroy');
 
 Route::resource('pinjaman', 'pinjamanController');
+Route::get('/pinjaman/delete/{id}','pinjamanController@destroy');
+
 Route::resource('anggota', 'anggotaController');
+Route::get('/anggota/delete/{id}','anggotaController@destroy');
+
 Route::resource('simpanan', 'simpananController');
+Route::get('/simpanan/delete/{id}','simpananController@destroy');

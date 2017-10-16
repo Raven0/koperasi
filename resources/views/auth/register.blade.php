@@ -61,6 +61,16 @@ Register
     </div>
 
     <div class="form-group">
+        <label class="col-md-4 control-label">Role</label>
+        <div class="col-md-6">
+            <select class="form-control" name="role">
+                <option value="ADMIN">ADMIN</option>
+                <option value="USER">USER</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
         <div class="col-md-6 col-md-offset-4">
             <button type="submit" class="btn btn-primary">
                 Register

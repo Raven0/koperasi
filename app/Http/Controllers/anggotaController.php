@@ -13,11 +13,19 @@ class anggotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
+    public function index(Request $request)
     {
         //
-        $vars = Anggota::all();
-         return view('anggota.index',['var' => $vars]);
+
+        $query = $request->get('search');
+        $var = Anggota::where('id_anggota', 'LIKE', '%' . $query . '%')->orWhere('nama', 'LIKE', '%' . $query . '%')->paginate(2);
+        return view('anggota.index', compact('var', 'query'));
     }
 
     /**

@@ -12,11 +12,19 @@ class simpananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
+    public function index(Request $request)
     {
         //
-        $vars = Simpanan::all();
-         return view('simpanan.index',['var' => $vars]);
+
+        $query = $request->get('search');
+        $var = Simpanan::where('id_simpanan', 'LIKE', '%' . $query . '%')->orWhere('nm_simpanan', 'LIKE', '%' . $query . '%')->paginate(2);
+        return view('simpanan.index', compact('var', 'query'));
     }
 
     /**
@@ -40,7 +48,6 @@ class simpananController extends Controller
     {
         //
         $var = new Simpanan;
-        $var->id_simpanan = $request->id_simpanan;
         $var->nm_simpanan = $request->nm_simpanan;
         $var->id_anggota = $request->id_anggota;
         $var->tgl_simpanan = $request->tgl_simpanan;
@@ -89,7 +96,6 @@ class simpananController extends Controller
     {
         //
         $var = Simpanan::find($id);
-        $var->id_simpanan = $request->id_simpanan;
         $var->nm_simpanan = $request->nm_simpanan;
         $var->id_anggota = $request->id_anggota;
         $var->tgl_simpanan = $request->tgl_simpanan;

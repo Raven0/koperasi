@@ -12,11 +12,18 @@ class pinjamanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
+    public function index(Request $request)
     {
         //
-        $vars = Pinjaman::all();
-         return view('pinjaman.index',['var' => $vars]);
+        $query = $request->get('search');
+        $var = Pinjaman::where('id_pinjaman', 'LIKE', '%' . $query . '%')->orWhere('nama_pinjaman', 'LIKE', '%' . $query . '%')->paginate(2);
+        return view('pinjaman.index', compact('var', 'query'));
     }
 
     /**
@@ -93,7 +100,6 @@ class pinjamanController extends Controller
     {
         //
         $var = Pinjaman::find($id);
-        $var->id_pinjaman = $request->id_pinjaman;
         $var->nama_pinjaman = $request->nama_pinjaman;
         $var->id_anggota = $request->id_anggota;
         $var->besar_pinjaman = $request->besar_pinjaman;

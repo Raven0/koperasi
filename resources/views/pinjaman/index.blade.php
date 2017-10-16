@@ -1,22 +1,68 @@
-<h1> VIEW </h1>
-<a href="pinjaman/create"> CREATE </a>
-@foreach($var as $var)
-    <p> {{ $var->id_pinjaman}} </p>
-    <p> {{ $var->nama_pinjaman}} </p>
-    <p> {{ $var->id_anggota}} </p>
-    <p> {{ $var->besar_pinjaman}} </p>
-    <p> {{ $var->tgl_pengajuan_pinjaman}} </p>
-    <p> {{ $var->tgl_acc_peminjam}} </p>
-    <p> {{ $var->tgl_pinjam}} </p>
-    <p> {{ $var->tgl_pelunasan}} </p>
-    <p> {{ $var->id_angsuran}} </p>
-    <p> {{ $var->ket}} </p>
-    <a href="/pinjaman/{{$var->id_pinjaman}}/edit"> EDIT</a> || 
-    <form action="/pinjaman/{{$var->id_pinjaman}}" method="post">
-        <input type="hidden" value="{{ csrf_token() }}" name="_token">
-        <input type="hidden" value="delete" name="_method">
-        <input type="submit" value="delete">
-    </form>
-    <hr>
+@extends('layouts.app')
+<style>
+    button{
+        width: 100px;
+    }
+</style>
 
+@section('panelhead')
+Pinjaman
+@endsection
+
+@section('create')
+<a href="pinjaman/create" class="btn btn-success">
+    Create
+</a>
+<br><br>
+
+@endsection
+
+@section('search')
+<form class="form-inline mt-2 mt-md-0" method="get" action="/pinjaman">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+@endsection
+
+@section('thead')
+<th>Id Pinjaman</th>
+<th>Nama Pinjaman</th>
+<th>Id Anggota</th>
+<th>Besar Pinjaman</th>
+<th>Tgl Pengajuan</th>
+<th>Tgl Acc</th>
+<th>Tgl Pinjam</th>
+<th>Tgl Lunas</th>
+<th>Id Angsuran</th>
+<th>Keterangan</th>
+<th>Action</th>
+@endsection
+
+@section('tbody')
+@foreach($var as $vars)
+    <tr>
+        <td>{{ $vars->id_pinjaman}}</td>
+        <td>{{ $vars->nama_pinjaman}}</td>
+        <td>{{ $vars->id_anggota}}</td>
+        <td>{{ $vars->besar_pinjaman}}</td>
+        <td>{{ $vars->tgl_pengajuan_pinjaman}}</td>
+        <td>{{ $vars->tgl_acc_peminjam}}</td>
+        <td>{{ $vars->tgl_pinjam}}</td>
+        <td>{{ $vars->tgl_pelunasan}}</td>
+        <td>{{ $vars->id_angsuran}}</td>
+        <td>{{ $vars->ket}}</td>
+        <td>
+            <a href="/pinjaman/{{$vars->id_pinjaman}}/edit" class="btn btn-warning">
+                Edit
+            </a>
+            <a href="{{url('pinjaman/delete',$vars->id_pinjaman)}}" class="btn btn-danger">
+                Delete
+            </a>
+        </td>
+    </tr>
 @endforeach
+@endsection
+
+@section('paginate')
+{{ $var->links() }}
+@endsection
