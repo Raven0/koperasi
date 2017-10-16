@@ -31,18 +31,22 @@ Pendaftaran
 @endsection
 
 @section('tbody')
-@foreach($var as $var)
+@foreach($var as $vars)
     <tr>
-        <td>{{ $var->id_kategori}}</td>
-        <td>{{ $var->nama_pinjaman}}</td>
+        <td>{{ $vars->id_kategori}}</td>
+        <td>{{ $vars->nama_pinjaman}}</td>
         <td>
-            <a href="/kategori/{{$var->id_kategori}}/edit" class="btn btn-warning">
+            <a href="/kategori/{{$vars->id_kategori}}/edit" class="btn btn-warning">
                 Edit
             </a>
-            <a href="{{url('kategori/delete',$var->id_kategori)}}" class="btn btn-danger">
+            <a href="{{url('kategori/delete',$vars->id_kategori)}}" class="btn btn-danger">
                 Delete
             </a>
         </td>
     </tr>
 @endforeach
+@endsection
+
+@section('paginate')
+{{ $var->links() }}
 @endsection
