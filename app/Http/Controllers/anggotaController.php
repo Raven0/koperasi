@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\anggota;
+
 
 class anggotaController extends Controller
 {
@@ -15,6 +16,8 @@ class anggotaController extends Controller
     public function index()
     {
         //
+        $vars = anggota::all();
+         return view('anggota.index',['var' => $vars]);
     }
 
     /**
@@ -25,6 +28,7 @@ class anggotaController extends Controller
     public function create()
     {
         //
+        return view('anggota.create');
     }
 
     /**
@@ -36,6 +40,18 @@ class anggotaController extends Controller
     public function store(Request $request)
     {
         //
+        $var = new anggota;
+        $var->id_anggota = $request->id_anggota;
+        $var->nama = $request->nama;
+        $var->alamat = $request->alamat;
+        $var->tgl_lhr = $request->tgl_lhr;
+        $var->tmp_lhr = $request->tmp_lhr;
+        $var->j_kel = $request->j_kel;
+        $var->status = $request->status;
+        $var->no_tlp = $request->no_tlp;
+        $var->ket = $request->ket;
+        $var->save();
+        return redirect('anggota');
     }
 
     /**
@@ -58,6 +74,12 @@ class anggotaController extends Controller
     public function edit($id)
     {
         //
+        $var = anggota::find($id);
+        if(!$var){
+            abort(404);
+        }
+        
+        return view('anggota.edit')->with('var', $var);
     }
 
     /**
@@ -70,6 +92,18 @@ class anggotaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $var = anggota::find($id);
+        $var->id_anggota = $request->id_anggota;
+        $var->nama = $request->nama;
+        $var->alamat = $request->alamat;
+        $var->tgl_lhr = $request->tgl_lhr;
+        $var->tmp_lhr = $request->tmp_lhr;
+        $var->j_kel = $request->j_kel;
+        $var->status = $request->status;
+        $var->no_tlp = $request->no_tlp;
+        $var->ket = $request->ket;
+        $var ->save();
+        return redirect('anggota');
     }
 
     /**
@@ -81,5 +115,8 @@ class anggotaController extends Controller
     public function destroy($id)
     {
         //
+        $var = anggota::find($id);
+        $var ->delete();
+        return redirect('anggota');
     }
 }

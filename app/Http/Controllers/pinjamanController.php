@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\pinjaman;
 
 class pinjamanController extends Controller
 {
@@ -15,6 +15,8 @@ class pinjamanController extends Controller
     public function index()
     {
         //
+        $vars = pinjaman::all();
+         return view('pinjaman.index',['var' => $vars]);
     }
 
     /**
@@ -25,6 +27,7 @@ class pinjamanController extends Controller
     public function create()
     {
         //
+        return view('pinjaman.create');
     }
 
     /**
@@ -36,6 +39,19 @@ class pinjamanController extends Controller
     public function store(Request $request)
     {
         //
+        $var = new pinjaman;
+        $var->id_pinjaman = $request->id_pinjaman;
+        $var->nama_pinjaman = $request->nama_pinjaman;
+        $var->id_anggota = $request->id_anggota;
+        $var->besar_pinjaman = $request->besar_pinjaman;
+        $var->tgl_pengajuan_pinjaman = $request->tgl_pengajuan_pinjaman;
+        $var->tgl_acc_peminjam = $request->tgl_acc_peminjam;
+        $var->tgl_pinjaman = $request->tgl_pinjaman;
+        $var->tgl_pelunasan = $request->tgl_pelunasan;
+        $var->id_angsuran = $request->id_angsuran;
+        $var->ket = $request->ket;
+        $var->save();
+        return redirect('pinjaman');
     }
 
     /**
@@ -58,6 +74,12 @@ class pinjamanController extends Controller
     public function edit($id)
     {
         //
+
+        $var = pinjaman::find($id);
+        if(!$var){
+            abort(404);
+        }
+        return view('pinjaman.edit')->with('var', $var);
     }
 
     /**
@@ -70,6 +92,21 @@ class pinjamanController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $var = pinjaman::find($id);
+        $var->id_pinjaman = $request->id_pinjaman;
+        $var->nama_pinjaman = $request->nama_pinjaman;
+        $var->id_anggota = $request->id_anggota;
+        $var->besar_pinjaman = $request->besar_pinjaman;
+        $var->tgl_pengajuan_pinjaman = $request->tgl_pengajuan_pinjaman;
+        $var->tgl_acc_peminjam = $request->tgl_acc_peminjam;
+        $var->tgl_pinjaman = $request->tgl_pinjaman;
+        $var->tgl_pelunasan = $request->tgl_pelunasan;
+        $var->id_angsuran = $request->id_angsuran;
+        $var->ket = $request->ket;
+        $var ->save();
+        return redirect('pinjaman');
+
+
     }
 
     /**
@@ -81,5 +118,8 @@ class pinjamanController extends Controller
     public function destroy($id)
     {
         //
+        $var = pinjaman::find($id);
+        $var ->delete();
+        return redirect('pinjaman');
     }
 }

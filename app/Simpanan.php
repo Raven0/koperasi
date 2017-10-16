@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Simpanan extends Model
+class simpanan extends Model
 {
     //
+    protected $table = 'simpanan';
+    public $timestamps = false;
+    protected $primaryKey = 'id_simpanan';
 }
