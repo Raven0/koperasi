@@ -10,10 +10,8 @@ Pendaftaran
 @endsection
 
 @section('create')
-<a href="kategori/create">
-    <button class="btn btn-success">
-        Create
-    </button>
+<a href="kategori/create" class="btn btn-success">
+    Create
 </a>
 <br><br>
 
