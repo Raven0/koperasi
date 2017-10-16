@@ -64,25 +64,25 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <a href="#">Angsuran</a>
+                                        <a href="angsuran">Angsuran</a>
                                     </li>
                                     <li>
-                                        <a href="#">Detail Angsuran</a>
+                                        <a href="detail_angsuran">Detail Angsuran</a>
                                     </li>
                                     <li>
-                                        <a href="#">Pinjaman</a>
+                                        <a href="pinjaman">Pinjaman</a>
                                     </li>
                                     <li>
                                         <a href="kategori">Kategori Pinjaman</a>
                                     </li>
                                     <li>
-                                        <a href="#">Simpanan</a>
+                                        <a href="simpanan">Simpanan</a>
                                     </li>
                                     <li>
-                                        <a href="#">Anggota</a>
+                                        <a href="anggota">Anggota</a>
                                     </li>
                                     <li>
-                                        <a href="#">Petugas Koperasi</a>
+                                        <a href="petugas">Petugas Koperasi</a>
                                     </li>
                                 </ul>
                             </li>
@@ -95,7 +95,7 @@
         @yield('content')
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             @yield('panelhead')

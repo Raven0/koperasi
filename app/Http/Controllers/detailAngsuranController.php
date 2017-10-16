@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Detail_Angsuran;
+use App\Angsuran;
 
 class detailAngsuranController extends Controller
 {
@@ -22,7 +23,7 @@ class detailAngsuranController extends Controller
     {
         //
         $vars = Detail_Angsuran::all();
-        return view('detail_Angsuran.index',['var' => $vars]);
+        return view('detail_angsuran.index',['var' => $vars]);
     }
 
     /**
@@ -33,7 +34,8 @@ class detailAngsuranController extends Controller
     public function create()
     {
         //
-        return view('detail_Angsuran.create');
+        $var = Angsuran::all();
+        return view('detail_angsuran.create')->with('var' ,$var);;
     }
 
     /**
@@ -46,18 +48,16 @@ class detailAngsuranController extends Controller
     {
         //
         $this->validate($request, [
-           'idkategori' => 'required', 'idanggota' => 'required', 'tglbayar' => 'required', 'angsuranke' => 'required', 'besarangsuran' => 'required', 'ket' => 'required'
+           'idangsuran' => 'required', 'tgljatuh' => 'required', 'besarangsuran' => 'required', 'ket' => 'required'
         ]);
 
         $var = new Detail_Angsuran;
-        $var->id_kategori = $request->idkategori;
-        $var->id_anggota = $request->idanggota;
-        $var->tgl_pembayaran = $request->tglbayar;
-        $var->angsuran_ke = $request->angsuranke;
+        $var->id_angsuran = $request->idangsuran;
+        $var->tgl_jatuh_tempo = $request->tgljatuh;
         $var->besar_angsuran = $request->besarangsuran;
         $var->ket = $request->ket;
         $var->save();
-        return redirect('detail_Angsuran');
+        return redirect('detail_angsuran');
     }
 
     /**
@@ -84,8 +84,7 @@ class detailAngsuranController extends Controller
         if(!$var){
             abort(404);
         }
-
-        return view('detail_Angsuran.edit')->with('var', $var);
+        return view('detail_angsuran.edit')->with('var', $var);
     }
 
     /**
@@ -99,18 +98,16 @@ class detailAngsuranController extends Controller
     {
         //
         $this->validate($request, [
-            'idkategori' => 'required', 'idanggota' => 'required', 'tglbayar' => 'required', 'angsuranke' => 'required', 'besarangsuran' => 'required', 'ket' => 'required'
+           'idangsuran' => 'required', 'tgljatuh' => 'required', 'besarangsuran' => 'required', 'ket' => 'required'
         ]);
 
         $var = Detail_Angsuran::find($id);
-        $var->id_kategori = $request->idkategori;
-        $var->id_anggota = $request->idanggota;
-        $var->tgl_pembayaran = $request->tglbayar;
-        $var->angsuran_ke = $request->angsuranke;
+        $var->id_angsuran = $request->idangsuran;
+        $var->tgl_jatuh_tempo = $request->tgljatuh;
         $var->besar_angsuran = $request->besarangsuran;
         $var->ket = $request->ket;
         $var->save();
-        return redirect('detail_Angsuran');
+        return redirect('detail_angsuran');
     }
 
     /**
@@ -124,6 +121,6 @@ class detailAngsuranController extends Controller
         //
         $var = Detail_Angsuran::find($id);
         $var ->delete();
-        return redirect('detail_Angsuran');
+        return redirect('detail_angsuran');
     }
 }

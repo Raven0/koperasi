@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Angsuran;
 use App\Kategori;
+use App\Anggota;
 
 class angsuranController extends Controller
 {
