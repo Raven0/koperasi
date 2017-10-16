@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Petugas;
 
 class petugasController extends Controller
 {
@@ -15,6 +16,8 @@ class petugasController extends Controller
     public function index()
     {
         //
+        $vars = Petugas::all();
+         return view('petugas.index',['var' => $vars]);
     }
 
     /**
@@ -25,6 +28,7 @@ class petugasController extends Controller
     public function create()
     {
         //
+        return view('petugas.create');
     }
 
     /**
@@ -36,6 +40,19 @@ class petugasController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+          'nama_petugas' => 'required', 'alamat' => 'required', 'no_tlp' => 'required', 'tmp_lhr' => 'required', 'tgl_lhr' => 'required', 'ket' => 'required',
+       ]);
+
+       $var = new Petugas;
+       $var->nama = $request->nama_petugas;
+       $var->alamat = $request->alamat;
+       $var->no_tlp = $request->no_tlp;
+       $var->tmp_lhr = $request->tmp_lhr;
+       $var->tgl_lhr = $request->tgl_lhr;
+       $var->ket = $request->ket;
+       $var->save();
+       return redirect('petugas');
     }
 
     /**

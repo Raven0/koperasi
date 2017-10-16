@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('main', 'flightController');
 
 Auth::routes();
 
@@ -27,3 +28,6 @@ Route::get('/angsuran/delete/{id}','angsuranController@destroy');
 
 Route::resource('detail_angsuran','detailAngsuranController');
 Route::get('/detail_angsuran/delete/{id}','detailAngsuranController@destroy');
+
+Route::resource('petugas', 'petugasController');
+Route::get('/petugas/delete/{id}','petugasController@destroy');
