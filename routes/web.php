@@ -39,3 +39,5 @@ Route::get('/anggota/delete/{id}','anggotaController@destroy');
 
 Route::resource('simpanan', 'simpananController');
 Route::get('/simpanan/delete/{id}','simpananController@destroy');
+
+Route::resource('usermanage', 'userManageController');

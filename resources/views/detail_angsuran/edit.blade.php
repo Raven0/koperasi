@@ -23,7 +23,12 @@ Edit Detail Angsuran
 <form action="/detail_angsuran/{{$var->id}}" method="post">
     <div class="form-group">
         <label> Angsuran </label>
-        <input type="text" name="idangsuran" value="{{$var->id_angsuran}}" class="form-control">
+        <select class="form-control" name="idangsuran">
+            <option value="">--SELECT--</option>
+            @foreach($varuu as $v)
+                <option value="{{$v->id_angsuran}}" @if($v->id_angsuran == $var->id_angsuran) selected @endif>{{$v->id_angsuran}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group">
         <label> Tanggal Jatuh Tempo </label>

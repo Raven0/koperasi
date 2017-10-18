@@ -9,6 +9,7 @@
 Anggota
 @endsection
 
+@if(Auth::user()->role == 'ADMIN')
 @section('create')
 <a href="anggota/create" class="btn btn-success">
     Create
@@ -25,14 +26,14 @@ Anggota
 @endsection
 
 @section('thead')
-<th>Id Anggota</th>
+<th>Id</th>
 <th>Nama</th>
 <th>Alamat</th>
 <th>Tgl Lahir</th>
-<th>Tempat LAHIR</th>
+<th>Tempat Lahir</th>
 <th>Kelamin</th>
-<th>Stats</th>
-<th>NOTELP</th>
+<th>Status</th>
+<th>Telepon</th>
 <th>Keterangan</th>
 <th>Action</th>
 @endsection
@@ -64,3 +65,8 @@ Anggota
 @section('paginate')
 {{ $var->links() }}
 @endsection
+@else
+@section('create')
+Welcome USER!
+@endsection
+@endif

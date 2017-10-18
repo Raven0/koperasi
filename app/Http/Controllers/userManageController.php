@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Simpanan;
-use App\Anggota;
+use App\User;
 
-class simpananController extends Controller
+
+class userManageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,8 +24,8 @@ class simpananController extends Controller
         //
 
         $query = $request->get('search');
-        $var = Simpanan::where('id_simpanan', 'LIKE', '%' . $query . '%')->orWhere('nm_simpanan', 'LIKE', '%' . $query . '%')->paginate(2);
-        return view('simpanan.index', compact('var', 'query'));
+        $var = User::where('id', 'LIKE', '%' . $query . '%')->orWhere('name', 'LIKE', '%' . $query . '%')->paginate(2);
+        return view('user.index', compact('var', 'query'));
     }
 
     /**
@@ -36,8 +36,6 @@ class simpananController extends Controller
     public function create()
     {
         //
-        $a = Anggota::all();
-        return view('simpanan.create')->with('a',$a);
     }
 
     /**
@@ -49,14 +47,6 @@ class simpananController extends Controller
     public function store(Request $request)
     {
         //
-        $var = new Simpanan;
-        $var->nm_simpanan = $request->nm_simpanan;
-        $var->id_anggota = $request->id_anggota;
-        $var->tgl_simpanan = $request->tgl_simpanan;
-        $var->besar_simpanan = $request->besar_simpanan;
-        $var->ket = $request->ket;
-        $var->save();
-        return redirect('simpanan');
     }
 
     /**
@@ -79,13 +69,12 @@ class simpananController extends Controller
     public function edit($id)
     {
         //
-        $var = Simpanan::find($id);
-        $a = Anggota::all();
+        $var = User::find($id);
         if(!$var){
             abort(404);
         }
 
-        return view('simpanan.edit')->with('var', $var)->with('a',$a);
+        return view('user.edit')->with('var', $var);
     }
 
     /**
@@ -98,14 +87,10 @@ class simpananController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $var = Simpanan::find($id);
-        $var->nm_simpanan = $request->nm_simpanan;
-        $var->id_anggota = $request->id_anggota;
-        $var->tgl_simpanan = $request->tgl_simpanan;
-        $var->besar_simpanan = $request->besar_simpanan;
-        $var->ket = $request->ket;
+        $var = User::find($id);
+        $var->role = $request->role;
         $var ->save();
-        return redirect('simpanan');
+        return redirect('usermanage');
     }
 
     /**
@@ -117,8 +102,8 @@ class simpananController extends Controller
     public function destroy($id)
     {
         //
-        $var = Simpanan::find($id);
-        $var ->delete();
-        return redirect('simpanan');
+        // $var = Anggota::find($id);
+        // $var ->delete();
+        // return redirect('anggota');
     }
 }

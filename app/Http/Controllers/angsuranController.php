@@ -86,11 +86,13 @@ class angsuranController extends Controller
     {
         //
         $var = Angsuran::find($id);
+        $K = Kategori::all();
+        $A = Anggota::all();
         if(!$var){
             abort(404);
         }
 
-        return view('angsuran.edit')->with('var', $var);
+        return view('angsuran.edit')->with('var', $var)->with('kategori' ,$K)->with('anggota' ,$A);
     }
 
     /**

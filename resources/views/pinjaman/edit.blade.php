@@ -27,7 +27,12 @@ Edit Pinjaman
     </div>
     <div class="form-group">
         <label>Anggota</label>
-        <input type="text" name="id_anggota" value="{{$var->id_anggota}}" class="form-control">
+        <select class="form-control" name="id_anggota">
+            <option value="">--SELECT--</option>
+            @foreach($a as $v)
+                <option value="{{$v->id_anggota}}" @if($var->id_anggota==$v->id_anggota) selected @endif>{{$v->nama}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group">
         <label>Besar Pinjaman</label>
@@ -51,7 +56,12 @@ Edit Pinjaman
     </div>
     <div class="form-group">
         <label>Angsuran</label>
-        <input type="text" name="id_angsuran" value="{{$var->id_angsuran}}" class="form-control">
+        <select name="id_angsuran" class="form-control">
+            <option value="">--SELECT--</option>
+            @foreach($b as $v)
+                <option value="{{$v->id_angsuran}}" @if($var->id_angsuran==$v->id_angsuran) selected @endif >{{$v->id_angsuran}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group">
         <label>Keterangan</label>

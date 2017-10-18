@@ -11,3 +11,5 @@ class Anggota extends Model
     public $timestamps = false;
     protected $primaryKey = 'id_anggota';
 }
+
+// anggota has many Angsuran,Pinjaman,Simpanan

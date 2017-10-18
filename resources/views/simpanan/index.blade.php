@@ -9,6 +9,7 @@
 Simpanan
 @endsection
 
+@if(Auth::user()->role == 'ADMIN')
 @section('create')
 <a href="simpanan/create" class="btn btn-success">
     Create
@@ -25,9 +26,9 @@ Simpanan
 @endsection
 
 @section('thead')
-<th>Id Simpanan</th>
+<th>Id</th>
 <th>Nama Simpanan</th>
-<th>Id Anggota</th>
+<th>Anggota</th>
 <th>Tgl Simpanan</th>
 <th>Besar Simpanan</th>
 <th>Keterangan</th>
@@ -39,7 +40,7 @@ Simpanan
     <tr>
         <td>{{ $vars->id_simpanan}}</td>
         <td>{{ $vars->nm_simpanan}}</td>
-        <td>{{ $vars->id_anggota}}</td>
+        <td>{{ $vars->Anggota->nama}}</td>
         <td>{{ $vars->tgl_simpanan}}</td>
         <td>{{ $vars->besar_simpanan}}</td>
         <td>{{ $vars->ket}}</td>
@@ -58,3 +59,37 @@ Simpanan
 @section('paginate')
 {{ $var->links() }}
 @endsection
+@else
+@section('search')
+<form class="form-inline mt-2 mt-md-0" method="get" action="/simpanan">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+@endsection
+
+@section('thead')
+<th>Id</th>
+<th>Nama Simpanan</th>
+<th>Anggota</th>
+<th>Tgl Simpanan</th>
+<th>Besar Simpanan</th>
+<th>Keterangan</th>
+@endsection
+
+@section('tbody')
+@foreach($var as $vars)
+    <tr>
+        <td>{{ $vars->id_simpanan}}</td>
+        <td>{{ $vars->nm_simpanan}}</td>
+        <td>{{ $vars->Anggota->nama}}</td>
+        <td>{{ $vars->tgl_simpanan}}</td>
+        <td>{{ $vars->besar_simpanan}}</td>
+        <td>{{ $vars->ket}}</td>
+    </tr>
+@endforeach
+@endsection
+
+@section('paginate')
+{{ $var->links() }}
+@endsection
+@endif

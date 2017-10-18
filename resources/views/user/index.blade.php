@@ -6,20 +6,12 @@
 </style>
 
 @section('panelhead')
-Kategori
+Manage User
 @endsection
 
 @if(Auth::user()->role == 'ADMIN')
-@section('create')
-<a href="kategori/create" class="btn btn-success">
-    Create
-</a>
-<br><br>
-
-@endsection
-
 @section('search')
-<form class="form-inline mt-2 mt-md-0" method="get" action="/kategori">
+<form class="form-inline mt-2 mt-md-0" method="get" action="/usermanage">
     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 </form>
@@ -27,22 +19,24 @@ Kategori
 
 @section('thead')
 <th>Id</th>
-<th>Nama Pinjaman</th>
+<th>Nama</th>
+<th>Role</th>
 <th>Action</th>
 @endsection
 
 @section('tbody')
 @foreach($var as $vars)
     <tr>
-        <td>{{ $vars->id_kategori}}</td>
-        <td>{{ $vars->nama_pinjaman}}</td>
+        <td>{{ $vars->id}}</td>
+        <td>{{ $vars->name}}</td>
+        <td>{{ $vars->role}}</td>
         <td>
-            <a href="/kategori/{{$vars->id_kategori}}/edit" class="btn btn-warning">
+            <a href="/usermanage/{{$vars->id}}/edit" class="btn btn-warning">
                 Edit
             </a>
-            <a href="{{url('kategori/delete',$vars->id_kategori)}}" class="btn btn-danger">
+            <!-- <a href="{{url('usermanage/delete',$vars->id)}}" class="btn btn-danger">
                 Delete
-            </a>
+            </a> -->
         </td>
     </tr>
 @endforeach
@@ -52,7 +46,5 @@ Kategori
 {{ $var->links() }}
 @endsection
 @else
-@section('create')
-Welcome USER!
-@endsection
+Welcome User
 @endif

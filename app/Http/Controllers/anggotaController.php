@@ -49,7 +49,6 @@ class anggotaController extends Controller
     {
         //
         $var = new Anggota;
-        $var->id_anggota = $request->id_anggota;
         $var->nama = $request->nama;
         $var->alamat = $request->alamat;
         $var->tgl_lhr = $request->tgl_lhr;
@@ -101,7 +100,6 @@ class anggotaController extends Controller
     {
         //
         $var = Anggota::find($id);
-        $var->id_anggota = $request->id_anggota;
         $var->nama = $request->nama;
         $var->alamat = $request->alamat;
         $var->tgl_lhr = $request->tgl_lhr;

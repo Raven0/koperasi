@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pinjaman;
+use App\Anggota;
+use App\Angsuran;
 
 class pinjamanController extends Controller
 {
@@ -34,7 +36,9 @@ class pinjamanController extends Controller
     public function create()
     {
         //
-        return view('pinjaman.create');
+        $a = Anggota::all();
+        $b = Angsuran::all();
+        return view('pinjaman.create')->with('a',$a)->with('b',$b);
     }
 
     /**
@@ -81,12 +85,13 @@ class pinjamanController extends Controller
     public function edit($id)
     {
         //
-
+        $a = Anggota::all();
+        $b = Angsuran::all();
         $var = Pinjaman::find($id);
         if(!$var){
             abort(404);
         }
-        return view('pinjaman.edit')->with('var', $var);
+        return view('pinjaman.edit')->with('var', $var)->with('a',$a)->with('b',$b);
     }
 
     /**

@@ -52,38 +52,64 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                    @if(Auth::user()->role == 'ADMIN')
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                    <li>
-                                        <a href="angsuran">Angsuran</a>
-                                    </li>
-                                    <li>
-                                        <a href="detail_angsuran">Detail Angsuran</a>
-                                    </li>
-                                    <li>
-                                        <a href="pinjaman">Pinjaman</a>
-                                    </li>
-                                    <li>
-                                        <a href="kategori">Kategori Pinjaman</a>
-                                    </li>
-                                    <li>
-                                        <a href="simpanan">Simpanan</a>
-                                    </li>
-                                    <li>
-                                        <a href="anggota">Anggota</a>
-                                    </li>
-                                    <li>
-                                        <a href="petugas">Petugas Koperasi</a>
-                                    </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <a href="angsuran">Angsuran</a>
+                                        </li>
+                                        <li>
+                                            <a href="detail_angsuran">Detail Angsuran</a>
+                                        </li>
+                                        <li>
+                                            <a href="pinjaman">Pinjaman</a>
+                                        </li>
+                                        <li>
+                                            <a href="kategori">Kategori Pinjaman</a>
+                                        </li>
+                                        <li>
+                                            <a href="simpanan">Simpanan</a>
+                                        </li>
+                                        <li>
+                                            <a href="anggota">Anggota</a>
+                                        </li>
+                                        <li>
+                                            <a href="petugas">Petugas Koperasi</a>
+                                        </li>
+                                        <li>
+                                            <a href="usermanage">Manage User</a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <a href="angsuran">Angsuran</a>
+                                        </li>
+                                        <li>
+                                            <a href="pinjaman">Pinjaman</a>
+                                        </li>
+                                        <li>
+                                            <a href="simpanan">Simpanan</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif

@@ -9,6 +9,7 @@
 Petugas
 @endsection
 
+@if(Auth::user()->role == 'ADMIN')
 @section('create')
 <a href="petugas/create" class="btn btn-success">
     Create
@@ -60,3 +61,8 @@ Petugas
 @section('paginate')
 {{ $var->links() }}
 @endsection
+@else
+@section('create')
+Welcome USER!
+@endsection
+@endif

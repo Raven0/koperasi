@@ -27,7 +27,12 @@ Edit Pinjaman
     </div>
     <div class="form-group">
         <label>Anggota</label>
-        <input type="text" name="id_anggota" value="{{$var->id_anggota}}" class="form-control">
+        <select class="form-control" name="id_anggota">
+            <option value="">--SELECT--</option>
+            @foreach($a as $v)
+                <option value="{{$v->id_anggota}}" @if($var->id_anggota==$v->id_anggota) selected @endif>{{$v->nama}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group">
         <label>Tgl Simpanan</label>

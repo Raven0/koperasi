@@ -11,3 +11,4 @@ class Kategori extends Model
     protected $primaryKey = "id_kategori";
     public $timestamps = false;
 }
+//Belongs To Angsr

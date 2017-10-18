@@ -18,12 +18,12 @@ class petugasController extends Controller
      {
          $this->middleware('auth');
      }
-     
+
     public function index(Request $request)
     {
         //
         $query = $request->get('search');
-        $var = Petugas::where('id_petugas', 'LIKE', '%' . $query . '%')->orWhere('nama', 'LIKE', '%' . $query . '%')->paginate(5);
+        $var = Petugas::where('id_petugas', 'LIKE', '%' . $query . '%')->orWhere('nama', 'LIKE', '%' . $query . '%')->paginate(2);
         return view('petugas.index', compact('var', 'query'));
     }
 

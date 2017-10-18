@@ -23,11 +23,21 @@ Edit Angsuran
 <form action="/angsuran/{{$var->id_angsuran}}" method="post">
     <div class="form-group">
         <label> Kategori </label>
-        <input type="text" name="idkategori" value="{{$var->id_kategori}}" class="form-control">
+        <select class="form-control" name="idkategori">
+            <option value="">--SELECT--</option>
+            @foreach($kategori as $v)
+                <option value="{{$v->id_kategori}}" @if($v->id_kategori == $var->id_kategori) selected @endif>{{$v->nama_pinjaman}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group">
         <label> Anggota </label>
-        <input type="text" name="idanggota" value="{{$var->id_anggota}}" class="form-control">
+        <select class="form-control" name="idanggota">
+            <option value="">--SELECT--</option>
+            @foreach($anggota as $v)
+                <option value="{{$v->id_anggota}}" @if($v->id_anggota == $var->id_anggota) selected @endif >{{$v->nama}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group">
         <label> Tanggal Pembayaran </label>

@@ -9,6 +9,7 @@
 Detail Angsuran
 @endsection
 
+@if(Auth::user()->role == 'ADMIN')
 @section('create')
 <a href="detail_angsuran/create" class="btn btn-success">
     Create
@@ -54,3 +55,8 @@ Detail Angsuran
 @section('paginate')
 {{ $var->links() }}
 @endsection
+@else
+@section('create')
+Welcome USER!
+@endsection
+@endif

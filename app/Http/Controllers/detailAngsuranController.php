@@ -36,7 +36,7 @@ class detailAngsuranController extends Controller
     {
         //
         $var = Angsuran::all();
-        return view('detail_angsuran.create')->with('var' ,$var);;
+        return view('detail_angsuran.create')->with('var' ,$var);
     }
 
     /**
@@ -82,10 +82,11 @@ class detailAngsuranController extends Controller
     {
         //
         $var = Detail_Angsuran::find($id);
+        $varuu = Angsuran::all();
         if(!$var){
             abort(404);
         }
-        return view('detail_angsuran.edit')->with('var', $var);
+        return view('detail_angsuran.edit')->with('var', $var)->with('varuu' ,$varuu);
     }
 
     /**
